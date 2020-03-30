@@ -9,5 +9,8 @@ namespace BlogManagement.Data
         {
 
         }
+
+        public DbSet<Models.ArticleEntity> ArticleEntities { get; set; }
+        public DbSet<Models.CommentEntity> CommentEntities { get; set; }
     }
 }
