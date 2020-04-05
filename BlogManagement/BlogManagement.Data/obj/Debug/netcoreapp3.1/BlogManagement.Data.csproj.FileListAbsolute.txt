@@ -3,10 +3,10 @@
 /Users/myavasoglu/Projects/BlogManagement/BlogManagement.Data/bin/Debug/netcoreapp3.1/BlogManagement.Data.runtimeconfig.dev.json
 /Users/myavasoglu/Projects/BlogManagement/BlogManagement.Data/bin/Debug/netcoreapp3.1/BlogManagement.Data.dll
 /Users/myavasoglu/Projects/BlogManagement/BlogManagement.Data/bin/Debug/netcoreapp3.1/BlogManagement.Data.pdb
-/Users/myavasoglu/Projects/BlogManagement/BlogManagement.Data/obj/Debug/netcoreapp3.1/BlogManagement.Data.csprojAssemblyReference.cache
 /Users/myavasoglu/Projects/BlogManagement/BlogManagement.Data/obj/Debug/netcoreapp3.1/BlogManagement.Data.csproj.CoreCompileInputs.cache
 /Users/myavasoglu/Projects/BlogManagement/BlogManagement.Data/obj/Debug/netcoreapp3.1/BlogManagement.Data.AssemblyInfoInputs.cache
 /Users/myavasoglu/Projects/BlogManagement/BlogManagement.Data/obj/Debug/netcoreapp3.1/BlogManagement.Data.AssemblyInfo.cs
 /Users/myavasoglu/Projects/BlogManagement/BlogManagement.Data/obj/Debug/netcoreapp3.1/BlogManagement.Data.dll
 /Users/myavasoglu/Projects/BlogManagement/BlogManagement.Data/obj/Debug/netcoreapp3.1/BlogManagement.Data.pdb
 /Users/myavasoglu/Projects/BlogManagement/BlogManagement.Data/obj/Debug/netcoreapp3.1/BlogManagement.Data.genruntimeconfig.cache
+/Users/myavasoglu/Projects/BlogManagement/BlogManagement.Data/obj/Debug/netcoreapp3.1/BlogManagement.Data.csprojAssemblyReference.cache

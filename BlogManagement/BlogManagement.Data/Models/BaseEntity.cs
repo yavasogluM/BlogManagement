@@ -2,7 +2,7 @@
 namespace BlogManagement.Data.Models
 {
     /// <summary>
-    /// Tabloların bulunduğu genel
+    /// Tablolar bu entity üzerinde türüyor
     /// </summary>
     public class BaseEntity
     {
