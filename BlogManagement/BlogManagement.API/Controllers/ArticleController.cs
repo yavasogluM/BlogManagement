@@ -11,55 +11,79 @@ namespace BlogManagement.API.Controllers
     [Route("api/[controller]")]
     public class ArticleController : Controller
     {
-        //private readonly BlogManagement.Data.Repositories.ArticleRepository _articleRepository;
+        private readonly Data.Repositories.RepoWrappers.IRepoWrapper _repoWrapper;
+        private readonly Services.ILogService _logService;
 
-        private readonly Data.Repositories.RepoWrappers.IRepoWrapper _repoWrappers;
-
-        public ArticleController(BlogManagement.Data.Repositories.RepoWrappers.IRepoWrapper repoWrapper)
+        public ArticleController(BlogManagement.Data.Repositories.RepoWrappers.IRepoWrapper repoWrapper, Services.ILogService logService)
         {
-            _repoWrappers = repoWrapper;
+            _repoWrapper = repoWrapper;
+            _logService = logService;
         }
-
-        [Route("[action]")]
-        public IEnumerable<Data.Models.ArticleEntity> GetArticles()
-        {
-            var articles = _repoWrappers.Article.GetAll();
-
-            var articleWithComments = _repoWrappers.Article.GetAllWithComments();
-
-            return articleWithComments.ToList();
-        }
-
-        // GET: api/values
+        
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("[action]")]
+        public IEnumerable<Models.ResultModels.ArticleResultModel> SearchByContent(string SearchText)
         {
-            return new string[] { "value1", "value2" };
+            return _repoWrapper.Article.GetArticlesBySearchText(SearchText).Result.Select(x => new Models.ResultModels.ArticleResultModel {
+                 ArticleId = x.Id,
+                  ArticleContent = x.ArticleContent,
+                   ArticleTitle = x.ArticleTitle
+            }).ToList();
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<Data.Models.ArticleEntity> GetArticleById(int Id)
         {
-            return "value";
+            var result = _repoWrapper.Article.GetArticleDetailById(Id);
+            return await result;
         }
 
-        // POST api/values
+
         [HttpPost]
-        public void Post([FromBody]string value)
+        [Route("[action]")]
+        public Models.ResultModels.BaseResultModel<object> CreateComment([FromBody]Models.PostModels.CommentModel model)
         {
-        }
+            try
+            {
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+                var _article = _repoWrapper.Article.Get(model.ArticleId);
+                if (_article == null)
+                {
+                    return new Models.ResultModels.BaseResultModel<object>
+                    {
+                         Result = false,
+                          ErrorText = "Article bulunamadı"
+                    };
+                }
+                
+                Data.Models.CommentEntity commentEntity = new Data.Models.CommentEntity();
+                commentEntity.IsDeleted = false;
+                commentEntity.CreateDate = DateTime.Now;
+                commentEntity.CommentatorName = model.CommentatorName;
+                commentEntity.CommentContent = model.CommentContent;
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+
+                commentEntity.Article = _article;
+
+                _repoWrapper.Comment.Add(commentEntity);
+                _repoWrapper.Save();
+
+                return new Models.ResultModels.BaseResultModel<object>
+                {
+                    Result = true
+                };
+            }
+            catch (Exception ex)
+            {
+                _logService.SaveToDB(ex.ToString(), "CreateComment Metodunda Hata");
+                return new Models.ResultModels.BaseResultModel<object>
+                {
+                    Result = false,
+                    ErrorText = "Bir hata oluştu, daha sonra tekrar deneyiniz"
+                };
+            }
         }
     }
 }

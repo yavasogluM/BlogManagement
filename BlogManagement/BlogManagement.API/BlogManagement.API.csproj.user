@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <StartAction>Project</StartAction>
+    <ExternalConsole>true</ExternalConsole>
+    <EnvironmentVariables>
+      <Variable name="Test" value="Test" xmlns="" />
+      <Variable name="ASPNETCORE_ENVIRONMENT" value="Development" xmlns="" />
+    </EnvironmentVariables>
+    <LaunchBrowser>true</LaunchBrowser>
+    <LaunchUrl></LaunchUrl>
+    <ApplicationURL>https://localhost:6601;http://localhost:6600</ApplicationURL>
+  </PropertyGroup>
+</Project>
