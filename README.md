@@ -1,4 +1,5 @@
 Soru: [Projede kullanıdığınız tasarım desenleri hangileridir? Bu desenleri neden kullandınız? ]
+
 Cevap: DB kısmında Repository Pattern kullandım.
 Api kısmında Open Closed Principle uyguladım fakat detaylı olmadığı ve metotların çoğunluğu “Data” projesinde olduğu için Log kısmını Open Closed Principle’a göre gerçekleştirdim. Open Closed tercih etmemin sebebi bilindiği üzere sınıfın genişletilip metotların olduğu gibi kalmasıdır. Bu sayede olası bir geliştirme varolana dokunmadan ilerleyeceği için zaman ve performans kazancı sağlamak çok daha kolaydır.
 
